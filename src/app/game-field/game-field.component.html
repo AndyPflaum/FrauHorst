@@ -1,0 +1,35 @@
+<div class="game-field">
+    <span (click)="openDialog()">So funktioniert das Spiel!</span>
+    <div class="regulate">
+        
+        <h1 *ngIf="!isRotating && getSum() === 3">
+          JEDER MUSS TRINKEN!
+        </h1>
+      
+        <h1 *ngIf="wuerfel1 === wuerfel2 && !isRotating">
+          DU BIST FRAU HORST!
+        </h1>
+        <h2 *ngIf="wuerfel1 === wuerfel2 && !isRotating">
+          Du darfst dir ein neues Wort ausdenken, das nicht mehr gesagt werden darf, solange du Frau Horst bist!
+        </h2>
+      
+        <h1 *ngIf="!isRotating && getSum() === 7">
+          Der Spieler rechts vom Würfler muss trinken
+        </h1>
+      
+        <h1 *ngIf="!isRotating && getSum() === 9">
+          Der Spieler links vom Würfler muss trinken
+        </h1>
+
+        <h1 *ngIf="!isRotating && getSum() === 8">
+            Der Würfler muss selber trinken
+          </h1>
+
+      </div>
+    <div class="dice-container">
+        <img [src]="wuerfel1" [class.rotating]="isRotating" alt="Würfel 1">
+        <img [src]="wuerfel2" [class.rotating]="isRotating" alt="Würfel 2">
+        
+    </div>
+    <button (click)="wuerfeln()" [disabled]="isButtonDisabled" [class.disabled]="isButtonDisabled">WÜRFELN!</button>
+</div>

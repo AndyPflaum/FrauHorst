@@ -1,1 +1,27 @@
-/* You can add global styles to this file, and also import other style files */
+body{
+    margin: 0;
+}
+
+
+
+@keyframes shake {
+    0% {
+        transform: translateX(-50%) rotate(-1deg);
+    }
+
+    25% {
+        transform: translateX(-50%) rotate(1deg);
+    }
+
+    50% {
+        transform: translateX(-50%) rotate(-1deg);
+    }
+
+    75% {
+        transform: translateX(-50%) rotate(1deg);
+    }
+
+    100% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+}
