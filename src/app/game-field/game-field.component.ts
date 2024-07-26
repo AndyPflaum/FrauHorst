@@ -20,6 +20,8 @@ export class GameFieldComponent {
     'assets/img/six.png'
   ];
 
+  wurfSound = new Audio('assets/sound/würfel.mp3');
+  jubelSound = new Audio('assets/sound/jubeln.mp3');
   wuerfel1 = this.wuerfelBilder[0];
   wuerfel2 = this.wuerfelBilder[0];
   isRotating = false;
@@ -30,6 +32,8 @@ export class GameFieldComponent {
     if (this.isButtonDisabled) {
       return;
     }
+
+    this.wurfSound.play();
 
     this.isRotating = true;
     this.isButtonDisabled = true;
@@ -44,8 +48,7 @@ export class GameFieldComponent {
       this.wuerfel2 = this.getRandomWuerfel();
       this.isRotating = false;
       this.isButtonDisabled = false;
-      console.log('Würfel zusammen ergeben', this.getSum());
-    }, 3000);
+    }, 1000);
   }
 
   getRandomWuerfel() {
@@ -56,11 +59,10 @@ export class GameFieldComponent {
   getSum() {
     const value1 = this.wuerfelBilder.indexOf(this.wuerfel1) + 1;
     const value2 = this.wuerfelBilder.indexOf(this.wuerfel2) + 1;
+    if (value1 + value2 === 3) {
+      this.jubelSound.play()
+    }
     return value1 + value2;
-  }
-
-  isPair(value1: string, value2: string): boolean {
-    return (this.wuerfel1 === value1 && this.wuerfel2 === value2) || (this.wuerfel1 === value2 && this.wuerfel2 === value1);
   }
 
   openDialog(): void {
